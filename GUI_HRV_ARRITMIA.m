@@ -17,9 +17,9 @@ gr=1;
 % qrs_i_raw : index of R waves
 
 %% Distancia temporal R-R
-ks=qrs_i_raw; % Posición de muestra de cada pico R
-kt=ks.*(1/fs); % Posición tiempo de cada pico R
-kl=length(ks); % Número de picos R
+ks=qrs_i_raw; % PosiciÃ³n de muestra de cada pico R
+kt=ks.*(1/fs); % PosiciÃ³n tiempo de cada pico R
+kl=length(ks); % NÃºmero de picos R
 for i=1:kl
     if i+1<=kl
         s(i)=kt(i+1)-kt(i);
@@ -27,14 +27,14 @@ for i=1:kl
 end
 RR=s; % Distancia R-R en tiempo
 RR_s=round(s.*fs); % Distancia R-R en muestras
-%% % Intervalos NN: intervalos RR filtrando aquellos que difieran en más de un 20% del anterior
+%% % Intervalos NN: intervalos RR filtrando aquellos que difieran en mÃ¡s de un 20% del anterior
 NN=s; 
 L=length(NN); 
 avg=mean(NN);
 std=std(NN);
 for i=1:length(s) 
     if i+1<=L
-         if (abs(NN(i)-NN(i+1))/NN(i))*100>20 % Intervalos NN: intervalos RR filtrando aquellos que difieran en más de un 20% del anterior
+         if (abs(NN(i)-NN(i+1))/NN(i))*100>20 % Intervalos NN: intervalos RR filtrando aquellos que difieran en mÃ¡s de un 20% del anterior
             if (avg-std<NN(i)) && (NN(i)<avg+std)
                     NN(i+1)=0;
             else
@@ -92,7 +92,7 @@ xlabel('Pares NN')
 ylabel('Alarma')
 grid on
 
-%% Gráfico de Arritmia basándonos en los Latidos por Segundo frente a cada intervalo NN
+%% GrÃ¡fico de Arritmia basÃ¡ndonos en los Latidos por Segundo frente a cada intervalo NN
 figure(5)
 plot(NNbpm,'*')
 xlabel('Pares NN')
